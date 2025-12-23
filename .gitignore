@@ -1,11 +1,23 @@
-# env
-my_env/
-venv
-env
+# Python
+__pycache__/
+*.pyc
+*.pyo
 .env
-# training datas
+.venv/
+my_env/
 training_data/
-# model checkpoints
-models/
-#node modules
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Node (if any frontend exists)
 node_modules/
+
+# Logs
+*.log
