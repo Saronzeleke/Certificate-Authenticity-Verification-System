@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  ai-service:
+    build: ./ai-service
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - API_KEY=${API_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+    volumes:
+      - ./ai-service:/app
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  node-service:
+    build: ./node-service
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=${DATABASE_URL}
+      - AI_SERVICE_URL=http://ai-service:8000
+      - AI_SERVICE_API_KEY=${API_KEY}
+    depends_on:
+      - ai-service
+      - postgres
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/migrations:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

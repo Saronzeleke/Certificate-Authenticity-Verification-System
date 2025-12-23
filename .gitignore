@@ -1,0 +1,11 @@
+# env
+my_env/
+venv
+env
+.env
+# training datas
+training_data/
+# model checkpoints
+models/
+#node modules
+node_modules/
