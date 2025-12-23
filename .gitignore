@@ -2,22 +2,22 @@
 __pycache__/
 *.pyc
 *.pyo
-.env
+
+# Virtual env
 .venv/
 my_env/
-training_data/
+.env
+
+# ML artifacts
+ai-service/models/
+
 # Jupyter
 .ipynb_checkpoints/
-
-# OS
-.DS_Store
 
 # IDE
 .vscode/
 .idea/
 
-# Node (if any frontend exists)
+# OS
+.DS_Store
 node_modules/
-
-# Logs
-*.log
